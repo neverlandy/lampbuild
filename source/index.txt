@@ -1,0 +1,50 @@
+﻿.. text documentation master file, created by
+   sphinx-quickstart on Fri Jul 21 11:49:55 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+====================================
+GAT Tech Doc [Join Project]
+====================================
+
+Linux[CentOS7]
+==================================
+
+.. toctree::
+   :maxdepth: 2
+
+   CentOS7_Install
+
+Apache
+==================================
+
+.. toctree::
+   :maxdepth: 2
+
+   ApacheWeb_Install
+
+
+PHP
+==================================
+
+.. toctree::
+   :maxdepth: 2
+
+   PHP_Install
+
+
+MariaDB
+==================================
+
+.. toctree::
+   :maxdepth: 2
+
+   MariaDB_Install
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
