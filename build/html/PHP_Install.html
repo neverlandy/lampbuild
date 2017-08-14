@@ -1,0 +1,209 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PHP &#8212; manual 0.1 ドキュメント</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="MariaDB" href="MariaDB_Install.html" />
+    <link rel="prev" title="Apache" href="ApacheWeb_Install.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="MariaDB_Install.html" title="MariaDB"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="ApacheWeb_Install.html" title="Apache"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">manual 0.1 ドキュメント</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PHP</a><ul>
+<li><a class="reference internal" href="#id1">はじめに</a></li>
+<li><a class="reference internal" href="#id2">インストール手順</a></li>
+<li><a class="reference internal" href="#id3">設定変更</a></li>
+<li><a class="reference internal" href="#composer">Composerインストール</a></li>
+<li><a class="reference internal" href="#php-apache">PHP設定反映 [Apacheサービス再起動]</a></li>
+<li><a class="reference internal" href="#id4">PHP動作確認</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="ApacheWeb_Install.html"
+                        title="前の章へ">Apache</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="MariaDB_Install.html"
+                        title="次の章へ">MariaDB</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/PHP_Install.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="検索" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="php">
+<h1>PHP<a class="headerlink" href="#php" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line">本ドキュメントはPHPのインストール、初期設定に関する内容を記述します。</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>インストール手順<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<div class="last line-block">
+<div class="line">本手順はCentOS7.xを想定して書かれています。</div>
+<div class="line">特段の記載がない場合を除き、rootユーザーで作業することを想定しています。</div>
+</div>
+</div>
+<p><strong>1. epelリポジトリを追加</strong></p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">epel-release</span></code></div></blockquote>
+<p><strong>2. remiリポジトリを追加</strong></p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">rpm</span> <span class="pre">-Uvh</span> <span class="pre">http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</span></code></div></blockquote>
+<p><strong>3. 現在のバージョン確認</strong></p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">#</span> <span class="pre">rpm</span> <span class="pre">-qa</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">php</span></code></p>
+<div class="line-block">
+<div class="line">古いバージョンがインストール済みの場合、念のため削除する。</div>
+</div>
+<p><code class="docutils literal"><span class="pre">#</span> <span class="pre">yum</span> <span class="pre">remove</span> <span class="pre">php-*</span></code></p>
+</div></blockquote>
+<p><strong>4. PHPインストール(PHP5.6の場合)</strong></p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">--enablerepo=remi,remi-php56</span> <span class="pre">php</span> <span class="pre">php-devel</span> <span class="pre">php-mbstring</span> <span class="pre">php-pdo</span> <span class="pre">php-gd</span> <span class="pre">php-xml</span> <span class="pre">php-mcrypt</span></code></div></blockquote>
+<p><strong>5. バージョンの確認</strong></p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">rpm</span> <span class="pre">-qa</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">php</span></code>
+<code class="docutils literal"><span class="pre">#</span> <span class="pre">php</span> <span class="pre">--version</span></code></div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>設定変更<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">vi</span> <span class="pre">/etc/php.ini</span></code></div></blockquote>
+<div class="line-block">
+<div class="line">date.timezone = 「Asia/Tokyo」</div>
+<div class="line"><br /></div>
+<div class="line">mbstring.language = Japanese</div>
+<div class="line">mbstring.internal_encoding = UTF-8</div>
+<div class="line">mbstring.http_input = UTF-8</div>
+<div class="line">mbstring.http_output = pass</div>
+<div class="line">mbstring.encoding_translation = On</div>
+<div class="line">mbstring.detect_order = auto</div>
+<div class="line">mbstring.substitute_charset = none</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="composer">
+<h2>Composerインストール<a class="headerlink" href="#composer" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">curl</span> <span class="pre">-sS</span> <span class="pre">https://getcomposer.org/installer</span> <span class="pre">|</span> <span class="pre">php</span></code>
+<code class="docutils literal"><span class="pre">#</span> <span class="pre">mv</span> <span class="pre">composer.phar</span> <span class="pre">/usr/local/bin/composer</span></code></div></blockquote>
+</div>
+<div class="section" id="php-apache">
+<h2>PHP設定反映 [Apacheサービス再起動]<a class="headerlink" href="#php-apache" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">#</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">httpd.service</span></code>
+<code class="docutils literal"><span class="pre">#</span> <span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">httpd.service</span></code></div></blockquote>
+</div>
+<div class="section" id="id4">
+<h2>PHP動作確認<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line">動作テスト用のサンプルPHPページを作成します。</div>
+</div>
+<p><code class="docutils literal"><span class="pre">#</span> <span class="pre">echo</span> <span class="pre">&quot;&lt;?php</span> <span class="pre">phpinfo();</span> <span class="pre">?&gt;&quot;</span> <span class="pre">&gt;</span> <span class="pre">/var/www/html/phpinfo.php</span></code></p>
+<div class="line-block">
+<div class="line">「<a class="reference external" href="http:/">http:/</a>/サーバー名/phpinfo.php」にアクセスして、</div>
+<div class="line">PHPの設定が表示されるphpinfo.phpページが表示されていればOKです。</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="MariaDB_Install.html" title="MariaDB"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="ApacheWeb_Install.html" title="Apache"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">manual 0.1 ドキュメント</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, nyproject.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3 で生成しました。
+    </div>
+  </body>
+</html>
