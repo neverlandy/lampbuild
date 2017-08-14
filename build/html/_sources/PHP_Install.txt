@@ -1,0 +1,83 @@
+=========================
+PHP
+=========================
+
+はじめに
+==========
+ | 本ドキュメントはPHPのインストール、初期設定に関する内容を記述します。
+
+インストール手順
+==================
+.. note::
+
+ | 本手順はCentOS7.xを想定して書かれています。
+ | 特段の記載がない場合を除き、rootユーザーで作業することを想定しています。
+
+**1. epelリポジトリを追加**
+
+ ``# yum install -y epel-release``
+
+**2. remiリポジトリを追加**
+
+ ``# rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm``
+
+
+**3. 現在のバージョン確認**
+
+ ``# rpm -qa | grep php``
+
+ | 古いバージョンがインストール済みの場合、念のため削除する。
+
+ ``# yum remove php-*``
+
+
+**4. PHPインストール(PHP5.6の場合)**
+
+ ``# yum install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd php-xml php-mcrypt``
+
+
+**5. バージョンの確認**
+
+ ``# rpm -qa | grep php``
+ ``# php --version``
+
+
+設定変更
+==========================
+
+  ``# vi /etc/php.ini``
+
+ | date.timezone = "Asia/Tokyo"
+ | 
+ | mbstring.language = Japanese
+ | mbstring.internal_encoding = UTF-8
+ | mbstring.http_input = UTF-8
+ | mbstring.http_output = pass
+ | mbstring.encoding_translation = On
+ | mbstring.detect_order = auto
+ | mbstring.substitute_charset = none
+
+
+Composerインストール
+====================================
+ ``# curl -sS https://getcomposer.org/installer | php``
+ ``# mv composer.phar /usr/local/bin/composer``
+
+
+PHP設定反映 [Apacheサービス再起動]
+======================================
+
+ ``# systemctl restart httpd.service``
+ ``# systemctl status httpd.service``
+
+PHP動作確認
+====================================
+
+ | 動作テスト用のサンプルPHPページを作成します。
+
+ ``# echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php``
+
+ | 「http://サーバー名/phpinfo.php」にアクセスして、
+ | PHPの設定が表示されるphpinfo.phpページが表示されていればOKです。
+
+
